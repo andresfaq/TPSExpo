@@ -1,0 +1,1 @@
+sudo phpunit --coverage-html /var/www/html/coveragetest/ Tests/CalculatorTest.php
