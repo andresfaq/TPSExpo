@@ -13,10 +13,16 @@ class CalculatorTest extends TestCase
 
     public function setUp(){
       $this->utilitiesMock = $this->getMockBuilder('Utilities')
-                                  ->setMethods(['getAwesomeString'])
+                                  ->setMethods(['getAwesomeString','getData','postData'])
                                   ->getMock();
       $this->utilitiesMock->method('getAwesomeString')
                           ->willReturn('===AwesomeStringMock===');
+
+      $this->utilitiesMock->method('postData')
+                          ->willReturn(true);
+
+      $this->utilitiesMock->method('getData')
+                          ->willReturn('=== My Mocked Data ===');
 
       $this->calculator = new Calculator($this->utilitiesMock);
       //$this->calculator = new Calculator();
@@ -39,6 +45,21 @@ class CalculatorTest extends TestCase
       $actual = $this->calculator->add(5,5);
       $expected = 10;
       $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     *@covers Calculator::sub
+     */
+    public function testSub()
+    {
+      $actual = $this->calculator->sub(5,5);
+      $expected = 0;
+      $this->assertEquals($expected, $actual);
+
+      $actual = $this->calculator->sub(5,5,true);
+      $expected = 0;
+      $this->assertEquals($expected, $actual);
+
     }
 
     /**
@@ -74,6 +95,18 @@ class CalculatorTest extends TestCase
     {
       $this->setExpectedException('DivZeroException');
       $this->calculator->div(15,0);
+    }
+
+    /**
+     *@covers Calculator::testeable
+     */
+    public function testTesteable()
+    {
+
+      $actual = $this->calculator->testeable($this->utilitiesMock);
+      $expected = '=== My Mocked Data ===';
+      $this->assertEquals($expected, $actual);
+
     }
 
 

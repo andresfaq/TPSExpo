@@ -33,11 +33,17 @@ class Calculator
         return $firstVal + $secondVal;
     }
 
-    public function sub($firstVal, $secondVal)
+    public function sub($firstVal, $secondVal, $write = false)
     {
         // @codeCoverageIgnoreStart
-        if(true){
-          // nothing
+        if($write){
+          $myFile = '/home/ubuntu/Expo/Classes/gente.txt';
+          // get the content of the file
+          $actual = file_get_contents($myFile);
+          // add new content in the file
+          $actual .= "John Smith\n";
+          // Escribe el contenido al fichero
+          file_put_contents($myFile, $actual);
         }
         // @codeCoverageIgnoreEnd
         return $firstVal - $secondVal;
@@ -69,8 +75,12 @@ class Calculator
 
     public function untesteable()
     {
+          // @codeCoverageIgnoreStart
+          $var = 2 + 2;
+          // @codeCoverageIgnoreEnd
           $myUtility = new Utilities();
-          $myUtility->postData('{"new data":"im doing changes on the database"}');
+          $myUtility->postData('{"new data":"imagine this info is going to a database"}');
+
           return $myUtility->getData();
     }
 
