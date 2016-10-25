@@ -23,5 +23,14 @@
         <directory suffix=".php">/home/ubuntu/Expo/Classes</directory>
       </whitelist>
     </filter>
+     
+    <testsuites>
+         <testsuite name="suite1">
+           <file>/home/ubuntu/Expo/Tests/CalculatorTest.php</file>
+         </testsuite>
+         <testsuite name="suite2">
+          <directory>/home/ubuntu/Expo/Tests</directory>
+         </testsuite>
+    </testsuites>
 
 </phpunit>
